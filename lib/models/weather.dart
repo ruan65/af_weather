@@ -103,13 +103,13 @@ class Weather extends Equatable {
   }
 }
 
-void main() {
-  print('Helolllw');
-
-  var weather = Weather(condition: WeatherCondition.clear);
-  var weather2 = Weather(condition: WeatherCondition.clear);
-
-  print(weather ==weather2);
-
-
-}
+//void main() {
+//  print('Helolllw');
+//
+//  var weather = Weather(condition: WeatherCondition.clear);
+//  var weather2 = Weather(condition: WeatherCondition.clear);
+//
+//  print(weather ==weather2);
+//
+//
+//}
