@@ -5,6 +5,14 @@ import 'package:af_weather/repositories/WeatherRepository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+class SimpleBlockDelegate extends BlocDelegate {
+
+  @override
+  void onTransition(Transition transition) {
+    print(transition);
+  }
+}
+
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   final WeatherRepository weatherRepository;
