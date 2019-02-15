@@ -20,4 +20,4 @@ class WeatherLoadedState extends WeatherState {
         super([weather]);
 }
 
-class WeatherError extends WeatherState {}
+class WeatherErrorState extends WeatherState {}
