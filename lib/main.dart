@@ -30,7 +30,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) =>
       MaterialApp(
         title: 'Weather',
-        home: WeatherWidget(),
+        home: WeatherWidget(weatherRepository: weatherRepository,),
       );
 }
 
