@@ -1,12 +1,13 @@
+import 'package:af_weather/bloc/weathe_events.dart';
 import 'package:af_weather/bloc/weather_bloc.dart';
 import 'package:af_weather/bloc/weather_state.dart';
 import 'package:af_weather/repositories/WeatherRepository.dart';
+import 'package:af_weather/widgets/city_selection_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherWidget extends StatefulWidget {
-
   final WeatherRepository weatherRepository;
 
   const WeatherWidget({Key key, this.weatherRepository}) : super(key: key);
@@ -16,7 +17,6 @@ class WeatherWidget extends StatefulWidget {
 }
 
 class _WeatherWidgetState extends State<WeatherWidget> {
-
   WeatherBloc _weatherBloc;
 
   @override
@@ -26,27 +26,39 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
-        appBar: AppBar(title: Text('Find your weather')),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text('Find your weather'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () async {
+                final city = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CitySelectionWidget()),
+                );
+                if(null != city) {
+                  _weatherBloc.dispatch(FetchWeatherEvent(city: city));
+                }
+              },
+            )
+          ],
+        ),
         body: Center(
           child: BlocBuilder(
             bloc: _weatherBloc,
             builder: (_, WeatherState state) {
-              if(state is WeatherEmptyState) {
+              if (state is WeatherEmptyState) {
                 return Center(child: Text('Please Select a Location'));
               }
-              if(state is WeatherLoadingState) {
+              if (state is WeatherLoadingState) {
                 return Center(child: CircularProgressIndicator());
               }
-              if(state is WeatherLoadedState) {
-
+              if (state is WeatherLoadedState) {
                 final weather = state.weather;
 
                 return ListView(
-                  children: <Widget>[
-
-                  ],
+                  children: <Widget>[],
                 );
               }
             },
