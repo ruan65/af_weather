@@ -5,7 +5,7 @@ import 'package:af_weather/repositories/WeatherRepository.dart';
 import 'package:af_weather/widgets/city_selection_widget.dart';
 import 'package:af_weather/widgets/last_updated_widget.dart';
 import 'package:af_weather/widgets/location_widget.dart';
-import 'package:af_weather/widgets/temperature_widget.dart';
+import 'package:af_weather/widgets/combined_condition_temperature_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,7 +77,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 50.0),
-                        child: TemperatureWidget(weather: weather))
+                        child: CombinedConditionTemperatureWidget(weather: weather))
                   ],
                 );
               }
