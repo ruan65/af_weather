@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:af_weather/bloc/weathe_events.dart';
-import 'package:af_weather/bloc/weather_state.dart';
+import 'package:af_weather/bloc/weather/weather_events.dart';
+import 'package:af_weather/bloc/weather/weather_state.dart';
 import 'package:af_weather/models/weather.dart';
 import 'package:af_weather/repositories/WeatherRepository.dart';
 import 'package:bloc/bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:af_weather/bloc/weather_bloc.dart';
+import 'package:af_weather/bloc/weather/weather_bloc.dart';
 import 'package:af_weather/repositories/WeatherRepository.dart';
 import 'package:af_weather/repositories/weather_api_client.dart';
 import 'package:af_weather/widgets/weather_widget.dart';
