@@ -13,6 +13,7 @@ import 'package:af_weather/widgets/combined_condition_temperature_widget.dart';
 import 'package:af_weather/widgets/gradient_container_widget.dart';
 import 'package:af_weather/widgets/last_updated_widget.dart';
 import 'package:af_weather/widgets/location_widget.dart';
+import 'package:af_weather/widgets/settings_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,10 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text('Find your weather'),
-          actions: <Widget>[weatherIcon(context, _weatherBloc)],
+          actions: <Widget>[
+            weatherIcon(context, _weatherBloc),
+            settingsIcon(context)
+          ],
         ),
         body: Center(
           child: BlocBuilder(
@@ -56,7 +60,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               if (state is WeatherLoadedState) {
                 final weather = state.weather;
                 final themeBloc = BlocProvider.of<ThemeBloc>(context);
-                themeBloc.dispatch(WeatherChangedEvent(condition: weather.condition));
+                themeBloc.dispatch(
+                    WeatherChangedEvent(condition: weather.condition));
 
                 _refreshCompleter?.complete();
                 _refreshCompleter = Completer();
@@ -117,5 +122,13 @@ Widget weatherIcon(BuildContext ctx, WeatherBloc bloc) => IconButton(
         if (null != city) {
           bloc.dispatch(FetchWeatherEvent(city: city));
         }
+      },
+    );
+
+Widget settingsIcon(BuildContext ctx) => IconButton(
+      icon: Icon(Icons.settings),
+      onPressed: () {
+        Navigator.push(
+            ctx, MaterialPageRoute(builder: (ctx) => SettingsWidget()));
       },
     );
