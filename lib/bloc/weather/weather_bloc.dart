@@ -7,16 +7,7 @@ import 'package:af_weather/repositories/WeatherRepository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-class SimpleBlockDelegate extends BlocDelegate {
-
-  @override
-  void onTransition(Transition transition) {
-    print(transition);
-  }
-}
-
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-
   final WeatherRepository weatherRepository;
 
   WeatherBloc({@required this.weatherRepository})
@@ -30,27 +21,21 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     WeatherState currentState,
     WeatherEvent event,
   ) async* {
-
-    if(event is FetchWeatherEvent) {
-
+    if (event is FetchWeatherEvent) {
       yield WeatherLoadingState();
 
       try {
-
         final Weather weather = await weatherRepository.getWeather(event.city);
         yield WeatherLoadedState(weather: weather);
-
       } catch (_) {
         yield WeatherErrorState();
       }
     }
 
-    if(event is RefreshWeatherEvent) {
+    if (event is RefreshWeatherEvent) {
       try {
-
         final Weather weather = await weatherRepository.getWeather(event.city);
         yield WeatherLoadedState(weather: weather);
-
       } catch (_) {
         yield currentState;
       }

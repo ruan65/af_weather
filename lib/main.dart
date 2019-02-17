@@ -1,3 +1,4 @@
+import 'package:af_weather/bloc/simple_bloc_delegate.dart';
 import 'package:af_weather/bloc/theme/theme_bloc.dart';
 import 'package:af_weather/bloc/theme/theme_state.dart';
 import 'package:af_weather/bloc/weather/weather_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
+
   BlocSupervisor().delegate = SimpleBlockDelegate();
 
   runApp(App(

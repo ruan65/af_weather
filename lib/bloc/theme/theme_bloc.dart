@@ -74,7 +74,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       case WeatherCondition.unknown:
         themeState = ThemeState(
           theme: ThemeData.light(),
-          color: Colors.lightBlue,
+          color: Colors.blueGrey,
         );
         break;
     }

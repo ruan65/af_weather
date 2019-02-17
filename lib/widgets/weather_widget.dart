@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:af_weather/bloc/theme/theme_bloc.dart';
+import 'package:af_weather/bloc/theme/theme_events.dart';
 import 'package:af_weather/bloc/theme/theme_state.dart';
 import 'package:af_weather/bloc/weather/weather_bloc.dart';
 import 'package:af_weather/bloc/weather/weather_events.dart';
@@ -55,6 +56,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               if (state is WeatherLoadedState) {
                 final weather = state.weather;
                 final themeBloc = BlocProvider.of<ThemeBloc>(context);
+                themeBloc.dispatch(WeatherChangedEvent(condition: weather.condition));
 
                 _refreshCompleter?.complete();
                 _refreshCompleter = Completer();
