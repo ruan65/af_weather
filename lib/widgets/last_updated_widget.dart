@@ -13,7 +13,7 @@ class LastUpdatedWidget extends StatelessWidget {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w300,
-          color: Colors.red,
+          color: Colors.white,
         ),
       );
 }
